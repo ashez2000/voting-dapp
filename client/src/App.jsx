@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import CandidateList from './components/CandidateList'
 import { ContractContext } from './context/ContractContext'
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
   return (
     <div>
       <h2>Admin Address : {adminAddress}</h2>
+      <CandidateList />
     </div>
   )
 }
