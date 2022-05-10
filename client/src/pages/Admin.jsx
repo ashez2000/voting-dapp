@@ -9,6 +9,7 @@ const AdminPage = () => {
       <div className="row">
         <div className="col-6">
           <AddCandidate />
+          <hr />
           <CandidateList />
         </div>
         <div className="col-6">

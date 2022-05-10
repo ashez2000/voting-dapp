@@ -30,21 +30,36 @@ const AddCandidate = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        name="address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
-      <input type="submit" value="Add candidate" />
-    </form>
+    <>
+      <h2 className="fs-3 fw-bold text-center">Add Candidate</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <input
+            className="form-control"
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name of candidate"
+          />
+        </div>
+        <div className="mb-3">
+          <input
+            className="form-control"
+            type="text"
+            name="address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Ethereum account of candidate"
+          />
+        </div>
+        <input
+          className="btn btn-primary"
+          type="submit"
+          value="Add candidate"
+        />
+      </form>
+    </>
   )
 }
 
