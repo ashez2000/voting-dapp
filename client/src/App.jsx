@@ -1,37 +1,26 @@
-import React, { useEffect, useState } from 'react'
-
-import ElectionContract from './contracts/Election.json'
-import getWeb3 from './getWeb3'
+import React, { useContext, useEffect, useState } from 'react'
+import { ContractContext } from './context/ContractContext'
 
 const App = () => {
+  const { electionContract } = useContext(ContractContext)
+
   const [adminAddress, setAdminAddress] = useState('')
-  const [web3, setWeb3] = useState(null)
 
   useEffect(() => {
     const init = async () => {
       try {
-        const res = await getWeb3()
-        setWeb3(res)
-
-        const networkId = await res.eth.net.getId()
-        const deployedNetwork = ElectionContract.networks[networkId]
-        const instance = new res.eth.Contract(
-          ElectionContract.abi,
-          deployedNetwork && deployedNetwork.address
-        )
-
-        const response = await instance.methods.getAdmin().call()
+        const response = await electionContract.methods.getAdmin().call()
         setAdminAddress(response)
       } catch (err) {
-        console.log(err)
+        console.error(err)
       }
     }
 
     init()
-  }, [])
+  }, [electionContract])
 
-  if (web3 === null) {
-    return <div>Loagin Web 3</div>
+  if (electionContract === null) {
+    return <div>Loagin</div>
   }
 
   return (
