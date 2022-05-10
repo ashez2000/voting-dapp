@@ -21,10 +21,14 @@ contract Election {
     address ethAdd;
   }
 
+  struct Voter {
+    address uid;
+    bool voted;
+  }
 
   Candidate[] private candidateList;
   mapping(uint => Candidate) private candidateMap;
-  mapping(address => bool) private voterList;
+  mapping(address => Voter) public voterList;
 
   function getAdmin() public view returns(address) {
     return admin;
@@ -35,6 +39,13 @@ contract Election {
     candidateMap[candidateCount] = c;
     candidateList.push(c);
     candidateCount++;
+  }
+
+  function addVoters(address[] memory voters) public onlyAdmin {
+    for(uint i = 0; i < voters.length; i++) {
+      Voter memory v = Voter({ uid: voters[i], voted: false });
+      voterList[voters[i]] = v;
+    }
   }
 
   function getCandidates() public view returns(Candidate[] memory) {
