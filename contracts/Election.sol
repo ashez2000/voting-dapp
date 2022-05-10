@@ -19,6 +19,7 @@ contract Election {
     uint uuid;
     string name;
     address ethAdd;
+    uint voteCount;
   }
 
   struct Voter {
@@ -35,7 +36,7 @@ contract Election {
   }
 
   function addCandidate(string memory _name, address _ethAdd) public onlyAdmin {
-    Candidate memory c = Candidate({ name: _name, ethAdd: _ethAdd, uuid: candidateCount });
+    Candidate memory c = Candidate({ name: _name, ethAdd: _ethAdd, uuid: candidateCount, voteCount: 0 });
     candidateMap[candidateCount] = c;
     candidateList.push(c);
     candidateCount++;
@@ -50,5 +51,13 @@ contract Election {
 
   function getCandidates() public view returns(Candidate[] memory) {
     return candidateList;
+  }
+
+  function vote(uint id) public {
+    require(voterList[msg.sender].uid != address(0));
+    require(voterList[msg.sender].voted == false);
+
+    candidateList[id].voteCount++;
+    voterList[msg.sender].voted = true;
   }
 }
