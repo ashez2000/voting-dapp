@@ -2,6 +2,7 @@ import React from 'react'
 
 import AddCandidate from '../components/AddCandidate'
 import CandidateList from '../components/CandidateList'
+import ElectionDetails from '../components/ElectionDetails'
 
 const AdminPage = () => {
   return (
@@ -13,9 +14,7 @@ const AdminPage = () => {
           <CandidateList />
         </div>
         <div className="col-6">
-          <div class="alert alert-warning" role="alert">
-            Status About the Election: <strong>"INIT", "LIVE, "OVER"</strong>
-          </div>
+          <ElectionDetails />
         </div>
       </div>
     </div>
