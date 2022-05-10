@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import AddCandidate from './components/AddCandidate'
 import CandidateList from './components/CandidateList'
 import { ContractContext } from './context/ContractContext'
 
@@ -28,6 +29,7 @@ const App = () => {
     <div>
       <h2>Admin Address : {adminAddress}</h2>
       <CandidateList />
+      <AddCandidate />
     </div>
   )
 }
