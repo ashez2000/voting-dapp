@@ -3,6 +3,7 @@ import React from 'react'
 import AddCandidate from '../components/AddCandidate'
 import CandidateList from '../components/CandidateList'
 import ElectionDetails from '../components/ElectionDetails'
+import AddVoters from '../components/AddVoters'
 
 const AdminPage = () => {
   return (
@@ -12,6 +13,8 @@ const AdminPage = () => {
           <AddCandidate />
           <hr />
           <CandidateList />
+          <hr />
+          <AddVoters />
         </div>
         <div className="col-6">
           <ElectionDetails />
