@@ -3,27 +3,20 @@ import { ContractContext } from '../context/ContractContext'
 
 const CandidateList = () => {
   const { electionContract } = useContext(ContractContext)
-
-  const [candidateList, setCandidateList] = useState([
-    ['1', 'James', '90x80978097097097079070970'],
-    ['1', 'James', '90x80978097097097079070970'],
-    ['1', 'James', '90x80978097097097079070970'],
-    ['1', 'James', '90x80978097097097079070970'],
-  ])
+  const [candidateList, setCandidateList] = useState([])
 
   useEffect(() => {
     const init = async () => {
       try {
         const response = await electionContract.methods.getCandidates().call()
         setCandidateList(response)
-        console.log(response)
       } catch (err) {
         console.error(err)
       }
     }
 
     init()
-  }, [])
+  }, [electionContract])
 
   if (electionContract === null) {
     return <div>Loadin</div>
