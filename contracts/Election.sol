@@ -7,6 +7,8 @@ contract Election {
   bool private start;
   bool private end;
   enum status {INIT, LIVE, OVER} status private electionStatus;
+  string electionTitle;
+  string electionOrganization;
 
   constructor() {
     admin = msg.sender;
@@ -90,5 +92,15 @@ contract Election {
 
   function getElectionStatus() public view returns(status) {
     return electionStatus;
+  }
+
+  function setElectionDetails(string memory title, string memory org) public onlyAdmin {
+    require(electionStatus == status.INIT);
+    electionTitle = title;
+    electionOrganization = org;
+  }
+
+  function getElectionDetails() public view returns(string memory, string memory, status) {
+    return (electionTitle, electionOrganization, electionStatus);
   }
 }

@@ -5,11 +5,17 @@ import getWeb3 from '../getWeb3'
 export const ContractContext = createContext({
   web3: null,
   electionContract: null,
+  electionDetail: {
+    title: 'Election Title',
+    org: 'Election Org',
+    status: '0',
+  },
 })
 
 export const ContractProvider = (props) => {
   const [web3, setWeb3] = useState(null)
   const [electionContract, setElectionContract] = useState(null)
+  const [electionDetail, setElectionDetail] = useState({})
 
   useEffect(() => {
     const init = async () => {
@@ -24,6 +30,13 @@ export const ContractProvider = (props) => {
           deployedNetwork && deployedNetwork.address
         )
 
+        const r = await instance.methods.getElectionDetails().call()
+        setElectionDetail({
+          title: r['0'],
+          org: r['1'],
+          status: r['2'],
+        })
+
         setElectionContract(instance)
       } catch (err) {
         console.log(err)
@@ -36,6 +49,7 @@ export const ContractProvider = (props) => {
   const value = {
     web3,
     electionContract,
+    electionDetail,
   }
 
   return (

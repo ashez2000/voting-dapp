@@ -5,6 +5,7 @@ import CandidateList from '../components/CandidateList'
 import ElectionDetails from '../components/ElectionDetails'
 import AddVoters from '../components/AddVoters'
 import SetElectionState from '../components/SetElectionState'
+import SetElectionDetails from '../components/SetElectionDetails'
 
 const AdminPage = () => {
   return (
@@ -24,6 +25,8 @@ const AdminPage = () => {
       <hr />
       <div className="row">
         <SetElectionState />
+        <hr />
+        <SetElectionDetails />
       </div>
     </div>
   )
