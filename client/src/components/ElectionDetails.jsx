@@ -1,6 +1,26 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+
+import { ContractContext } from '../context/ContractContext'
 
 const ElectionDetails = () => {
+  const { electionContract } = useContext(ContractContext)
+  const [status, setStatus] = useState('')
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await electionContract.methods
+          .getElectionStatus()
+          .call()
+        setStatus(response)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    fetch()
+  }, [electionContract])
+
   return (
     <div>
       <h2 className="fs-2 fw-bold">Details</h2>
@@ -13,7 +33,7 @@ const ElectionDetails = () => {
         </div>
         <div>
           <p className="fs-5">
-            Election Status : <span class="badge bg-success"> Live </span>
+            Election Status : <span class="badge bg-success"> {status} </span>
           </p>
         </div>
         <div>

@@ -20,8 +20,22 @@ export const ElectionProvider = (props) => {
     return { candidateList: response, error }
   }
 
+  const getElectionStatus = async () => {
+    let error = null
+    let response = []
+
+    try {
+      response = await electionContract.methods.getElectionStatus().call()
+    } catch (err) {
+      error = err
+    }
+
+    return { electionStatus: response, error }
+  }
+
   const value = {
-    candidateList,
+    getCandidateList,
+    getElectionStatus,
   }
 
   return (
