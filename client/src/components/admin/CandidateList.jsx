@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { ContractContext } from '../context/ContractContext'
+import { ContractContext } from '../../context/ContractContext'
 
 const CandidateList = () => {
   const { electionContract } = useContext(ContractContext)
@@ -24,7 +24,7 @@ const CandidateList = () => {
 
   return (
     <div>
-      <h2 className="fs-2 fw-bold text-center">CandidatesList</h2>
+      <h2 className="fs-2">Candidates List</h2>
       <ul className="list-group list-group-flush">
         {candidateList.map((c) => (
           <li className="list-group-item" key={c[0]}>

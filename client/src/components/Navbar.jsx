@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
       <div className="container">
-        <a className="navbar-brand" href="#">
-          Voting Dapp
-        </a>
+        <span className="navbar-brand fw-bold">Voting Dapp</span>
 
         <div>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">

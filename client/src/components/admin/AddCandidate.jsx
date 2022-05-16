@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { ContractContext } from '../context/ContractContext'
+import { ContractContext } from '../../context/ContractContext'
 
 const AddCandidate = () => {
   const { electionContract, web3 } = useContext(ContractContext)
@@ -31,7 +31,7 @@ const AddCandidate = () => {
 
   return (
     <>
-      <h2 className="fs-3 fw-bold text-center">Add Candidate</h2>
+      <h2 className="fs-3 text-center">Add Candidate</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <input
@@ -53,11 +53,13 @@ const AddCandidate = () => {
             placeholder="Ethereum account of candidate"
           />
         </div>
-        <input
-          className="btn btn-primary"
-          type="submit"
-          value="Add candidate"
-        />
+        <div className="d-grid">
+          <input
+            className="btn btn-primary"
+            type="submit"
+            value="Add candidate"
+          />
+        </div>
       </form>
     </>
   )
