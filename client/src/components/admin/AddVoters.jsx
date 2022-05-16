@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { ContractContext } from '../context/ContractContext'
+import { ContractContext } from '../../context/ContractContext'
 
-import voters from '../data/voters'
+import voters from '../../data/voters'
 
 const AddVoters = () => {
   const { electionContract, web3 } = useContext(ContractContext)

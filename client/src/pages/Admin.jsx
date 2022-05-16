@@ -1,22 +1,19 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-import AddCandidate from '../components/admin/AddCandidate'
-import CandidateList from '../components/admin/CandidateList'
-import ElectionDetails from '../components/ElectionDetails'
-import AddVoters from '../components/AddVoters'
-import SetElectionState from '../components/SetElectionState'
-import SetElectionDetails from '../components/SetElectionDetails'
 import AdminNavbar from '../components/admin/AdminNavbar'
+import ElectionDetailsPage from './admin/ElectionDetails'
 import CandidatesPage from './admin/Candidates'
+import VotersPage from './admin/Voters'
 
 const AdminPage = () => {
   return (
     <>
       <AdminNavbar />
       <Routes>
-        <Route index element={<ElectionDetails />} />
+        <Route index element={<ElectionDetailsPage />} />
         <Route path="/candidates" element={<CandidatesPage />} />
+        <Route path="/voters" element={<VotersPage />} />
       </Routes>
     </>
   )

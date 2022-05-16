@@ -13,7 +13,7 @@ const AddCandidate = () => {
       const accounts = await web3.eth.getAccounts()
 
       await electionContract.methods
-        .addCandidate(name, party, crypto.randomUUID())
+        .addCandidate(name, party)
         .send({ from: accounts[0] })
 
       alert('Candidate added successfully')
