@@ -24,12 +24,19 @@ const PollingPage = () => {
     return <div>Loadin</div>
   }
 
+  console.log(candidateList)
+
   return (
     <div>
       <h2 className="fw-bold mb-3">Vote for your candidate</h2>
       <div className="row flex">
         {candidateList.map((c) => (
-          <VoteCard key={c[0]} candidateName={c[1]} candidateId={c[0]} />
+          <VoteCard
+            key={c[0]}
+            candidateId={c[0]}
+            candidateName={c[1]}
+            candidateParty={c[2]}
+          />
         ))}
       </div>
     </div>

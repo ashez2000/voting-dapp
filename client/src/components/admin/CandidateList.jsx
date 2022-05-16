@@ -25,13 +25,22 @@ const CandidateList = () => {
   return (
     <div>
       <h2 className="fs-2">Candidates List</h2>
-      <ul className="list-group list-group-flush">
-        {candidateList.map((c) => (
-          <li className="list-group-item" key={c[0]}>
-            {c[0]} | {c[1]} | {c[2]}
-          </li>
-        ))}
-      </ul>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Party</th>
+          </tr>
+        </thead>
+        <tbody>
+          {candidateList.map((c) => (
+            <tr key={c[0]}>
+              <td>{c[1]}</td>
+              <td>{c[2]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }

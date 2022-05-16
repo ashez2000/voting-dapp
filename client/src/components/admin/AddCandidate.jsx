@@ -4,7 +4,7 @@ import { ContractContext } from '../../context/ContractContext'
 const AddCandidate = () => {
   const { electionContract, web3 } = useContext(ContractContext)
   const [name, setName] = useState('')
-  const [address, setAddress] = useState('')
+  const [party, setParty] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -13,8 +13,9 @@ const AddCandidate = () => {
       const accounts = await web3.eth.getAccounts()
 
       await electionContract.methods
-        .addCandidate(name, address)
+        .addCandidate(name, party, crypto.randomUUID())
         .send({ from: accounts[0] })
+
       alert('Candidate added successfully')
     } catch (err) {
       alert('Add candidate failed')
@@ -22,7 +23,7 @@ const AddCandidate = () => {
     }
 
     setName('')
-    setAddress('')
+    setParty('')
   }
 
   if (electionContract === null) {
@@ -37,20 +38,20 @@ const AddCandidate = () => {
           <input
             className="form-control"
             type="text"
-            name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Name of candidate"
+            required
           />
         </div>
         <div className="mb-3">
           <input
             className="form-control"
             type="text"
-            name="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            placeholder="Ethereum account of candidate"
+            value={party}
+            onChange={(e) => setParty(e.target.value)}
+            placeholder="Candidates Party"
+            required
           />
         </div>
         <div className="d-grid">
