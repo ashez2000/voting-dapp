@@ -24,9 +24,9 @@ contract Election {
   }
 
   struct Candidate {
-    uint uuid;
+    string uuid;
     string name;
-    address ethAdd;
+    string party;
     uint voteCount;
   }
 
@@ -36,20 +36,21 @@ contract Election {
   }
 
   Candidate[] private candidateList;
-  mapping(uint => Candidate) private candidateMap;
+  mapping(string => Candidate) private candidateMap;
   mapping(address => Voter) public voterList;
 
   function getAdmin() public view returns(address) {
     return admin;
   }
 
-  function addCandidate(string memory _name, address _ethAdd) public onlyAdmin {
+  function addCandidate(string memory _name, string memory _party, string memory _uuid) public onlyAdmin {
     require(electionStatus == status.INIT);
 
-    Candidate memory c = Candidate({ name: _name, ethAdd: _ethAdd, uuid: candidateCount, voteCount: 0 });
-    candidateMap[candidateCount] = c;
-    candidateList.push(c);
+    Candidate memory c = Candidate({ name: _name, party: _party, uuid: _uuid, voteCount: 0 });
     candidateCount++;
+
+    candidateMap[_uuid] = c;
+    candidateList.push(c);
   }
 
   function addVoters(address[] memory voters) public onlyAdmin {
@@ -65,13 +66,13 @@ contract Election {
     return candidateList;
   }
 
-  function vote(uint id) public {
+  function vote(string memory id) public {
     require(electionStatus == status.LIVE);
 
     require(voterList[msg.sender].uid != address(0));
     require(voterList[msg.sender].voted == false);
 
-    candidateList[id].voteCount++;
+    candidateMap[id].voteCount++;
     voterList[msg.sender].voted = true;
   }
 
