@@ -6,10 +6,12 @@ import ElectionDetails from '../components/ElectionDetails'
 import AddVoters from '../components/AddVoters'
 import SetElectionState from '../components/SetElectionState'
 import SetElectionDetails from '../components/SetElectionDetails'
+import AdminNavbar from '../components/admin/AdminNavbar'
 
 const AdminPage = () => {
   return (
     <div>
+      <AdminNavbar />
       <div className="row">
         <div className="col-6">
           <AddCandidate />
