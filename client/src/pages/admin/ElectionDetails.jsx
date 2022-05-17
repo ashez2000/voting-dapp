@@ -1,14 +1,20 @@
 import React from 'react'
 
 import ElectionDetails from '../../components/ElectionDetails'
-import SetElectionState from '../../components/SetElectionState'
+import SetElectionState from '../../components/admin/SetElectionState'
+import SetElectionDetails from '../../components/admin/SetElectionDetails'
 
 const ElectionDetailsPage = () => {
   return (
-    <div>
-      <ElectionDetails />
-      <hr />
-      <SetElectionState />
+    <div className="row">
+      <div className="col-4">
+        <SetElectionDetails />
+        <hr />
+        <SetElectionState />
+      </div>
+      <div className="col">
+        <ElectionDetails />
+      </div>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ContractContext } from '../context/ContractContext'
+import { ContractContext } from '../../context/ContractContext'
 
 const SetElectionState = () => {
   const { electionContract, web3 } = useContext(ContractContext)
@@ -33,12 +33,12 @@ const SetElectionState = () => {
   }
 
   return (
-    <div>
+    <div className="d-grid gap-3">
       <button className="btn btn-lg btn-success" onClick={startElection}>
-        START
+        START Election
       </button>
       <button className="btn btn-lg btn-danger" onClick={endElection}>
-        END
+        END Election
       </button>
     </div>
   )

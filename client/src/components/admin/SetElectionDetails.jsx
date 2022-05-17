@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { ContractContext } from '../context/ContractContext'
+import { ContractContext } from '../../context/ContractContext'
 
 const SetElectionDetails = () => {
   const { electionContract, web3 } = useContext(ContractContext)
@@ -32,22 +32,29 @@ const SetElectionDetails = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Election Title"
-        name="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Election Organization"
-        name="org"
-        value={org}
-        onChange={(e) => setOrg(e.target.value)}
-      />
+      <div className="mb-3">
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Election Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </div>
 
-      <input type="submit" value="Set Detail" />
+      <div className="mb-3">
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Election Organization"
+          value={org}
+          onChange={(e) => setOrg(e.target.value)}
+        />
+      </div>
+
+      <div class="d-grid mb-3">
+        <input className="btn btn-primary" type="submit" value="Set Detail" />
+      </div>
     </form>
   )
 }
