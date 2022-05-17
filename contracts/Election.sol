@@ -2,27 +2,6 @@
 pragma solidity ^0.8.13;
 
 contract Election {
-  address private admin;
-  uint private candidateCount;
-  bool private start;
-  bool private end;
-  enum status {INIT, LIVE, OVER} status private electionStatus;
-  string electionTitle;
-  string electionOrganization;
-
-  constructor() {
-    admin = msg.sender;
-    candidateCount = 0;
-    electionStatus = status.INIT;
-    start = false;
-    end = false;
-  }
-
-  modifier onlyAdmin() {
-    require(msg.sender == admin);
-    _;
-  }
-
   struct Candidate {
     uint uuid;
     string name;
@@ -35,13 +14,37 @@ contract Election {
     bool voted;
   }
 
+  address private admin;
+  enum status {INIT, LIVE, OVER} status private electionStatus;
+  bool private start;
+  bool private end;
+  
+  string electionTitle;
+  string electionOrganization;
+  uint private candidateCount;
+
+  constructor() {
+    admin = msg.sender;
+    candidateCount = 0;
+    electionStatus = status.INIT;
+    start = false;
+    end = false;
+  }
+  
+
   Candidate[] private candidateList;
   mapping(uint => Candidate) private candidateMap;
   mapping(address => Voter) public voterList;
 
-  function getAdmin() public view returns(address) {
-    return admin;
+
+  modifier onlyAdmin() {
+    require(msg.sender == admin);
+    _;
   }
+
+  /**
+    * admin Funcs
+  */
 
   function addCandidate(string memory _name, string memory _party) public onlyAdmin {
     require(electionStatus == status.INIT);
@@ -54,6 +57,7 @@ contract Election {
     candidateCount++;
   }
 
+
   function addVoters(address[] memory voters) public onlyAdmin {
     require(electionStatus == status.INIT);
 
@@ -63,19 +67,6 @@ contract Election {
     }
   }
 
-  function getCandidates() public view returns(Candidate[] memory) {
-    return candidateList;
-  }
-
-  function vote(uint id) public {
-    require(electionStatus == status.LIVE);
-
-    require(voterList[msg.sender].uid != address(0));
-    require(voterList[msg.sender].voted == false);
-
-    candidateList[id].voteCount++;
-    voterList[msg.sender].voted = true;
-  }
 
   function startElection() public onlyAdmin {
     require(start == false);
@@ -83,6 +74,7 @@ contract Election {
     electionStatus = status.LIVE;
     start = true;
   }
+
 
   function endElection() public onlyAdmin {
     require(start == true);
@@ -92,9 +84,6 @@ contract Election {
     end = true;
   }
 
-  function getElectionStatus() public view returns(status) {
-    return electionStatus;
-  }
 
   function setElectionDetails(string memory title, string memory org) public onlyAdmin {
     require(electionStatus == status.INIT);
@@ -102,7 +91,32 @@ contract Election {
     electionOrganization = org;
   }
 
+  /**
+    * Public Funcs
+  */
+
+  function getCandidates() public view returns(Candidate[] memory) {
+    return candidateList;
+  }
+
+
+  function getElectionStatus() public view returns(status) {
+    return electionStatus;
+  }
+
+
   function getElectionDetails() public view returns(string memory, string memory, status) {
     return (electionTitle, electionOrganization, electionStatus);
+  }
+
+
+  function vote(uint id) public {
+    require(electionStatus == status.LIVE);
+
+    require(voterList[msg.sender].uid != address(0));
+    require(voterList[msg.sender].voted == false);
+
+    candidateList[id].voteCount++;
+    voterList[msg.sender].voted = true;
   }
 }
