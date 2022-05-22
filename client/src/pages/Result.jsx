@@ -59,21 +59,42 @@ const ResultPage = () => {
 const ResultComponent = ({ result, candidateList }) => {
   return (
     <div>
-      <h2 className="fw-bold mb-3">Vote for your candidate</h2>
+      <h2 className="fw-bold mb-3">Results</h2>
       <div className="row flex">
         {result(candidateList).length > 1 ? (
-          <div>Tie</div>
+          <div className="fs-4">Tie between candidatidates : </div>
         ) : (
-          <div>Single Winner</div>
+          <div className="fs-4">Winner : </div>
         )}
 
         <ul className="list-group list-group-flush">
           {result(candidateList).map((c) => (
             <li className="list-group-item" key={c[0]}>
-              {`${c[0]} | ${c[1]} | ${c[2]} | Votes: ${c[3]}`}
+              <h3 className="fs-4">{`${c[1]} | ${c[2]} | Votes : ${c[3]}`}</h3>
             </li>
           ))}
         </ul>
+
+        <hr />
+
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Party</th>
+              <th>Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {candidateList.map((c) => (
+              <tr key={c[0]}>
+                <td>{c[1]}</td>
+                <td>{c[2]}</td>
+                <td>{c[3]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   )

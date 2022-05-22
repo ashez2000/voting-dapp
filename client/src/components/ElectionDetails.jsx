@@ -22,7 +22,7 @@ const ElectionDetails = () => {
     }
 
     fetch()
-  }, [])
+  }, [electionContract])
 
   const dispayStatus = (s) => {
     if (s === '0') {
