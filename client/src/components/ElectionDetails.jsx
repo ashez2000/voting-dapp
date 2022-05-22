@@ -3,8 +3,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ContractContext } from '../context/ContractContext'
 
 const ElectionDetails = () => {
-  const { electionContract, electionDetail } = useContext(ContractContext)
+  const { electionContract } = useContext(ContractContext)
   const [status, setStatus] = useState('')
+  const [detail, setDetail] = useState({})
 
   useEffect(() => {
     const fetch = async () => {
@@ -13,13 +14,15 @@ const ElectionDetails = () => {
           .getElectionStatus()
           .call()
         setStatus(response)
+        const res = await electionContract.methods.getElectionDetails().call()
+        setDetail(res)
       } catch (err) {
         console.error(err)
       }
     }
 
     fetch()
-  }, [electionContract])
+  }, [])
 
   const dispayStatus = (s) => {
     if (s === '0') {
@@ -49,10 +52,10 @@ const ElectionDetails = () => {
       <h2 className="fs-2 fw-bold">Details</h2>
       <div className="d-flex flex-column ">
         <div>
-          <p className="fs-5">Title : {electionDetail.title}</p>
+          <p className="fs-5">Title : {detail && detail[0]}</p>
         </div>
         <div>
-          <p className="fs-5">Organization : {electionDetail.org}</p>
+          <p className="fs-5">Organization : {detail && detail[1]}</p>
         </div>
         <div>{dispayStatus(status)}</div>
       </div>

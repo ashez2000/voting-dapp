@@ -4,6 +4,7 @@ import { ContractContext } from '../context/ContractContext'
 const ResultPage = () => {
   const { electionContract } = useContext(ContractContext)
   const [candidateList, setCandidateList] = useState([])
+  const [status, setStatus] = useState('0')
 
   const result = (candidateList) => {
     let temp = []
@@ -26,6 +27,8 @@ const ResultPage = () => {
     const init = async () => {
       try {
         const response = await electionContract.methods.getCandidates().call()
+        const res = await electionContract.methods.getElectionStatus().call()
+        setStatus(res)
         setCandidateList(response)
         console.log(response)
       } catch (err) {
@@ -40,6 +43,20 @@ const ResultPage = () => {
     return <div>Loadin</div>
   }
 
+  console.log(status)
+
+  if (status !== '2') {
+    return (
+      <div>
+        <h2 className="text-center">No results published.</h2>
+      </div>
+    )
+  } else {
+    return <ResultComponent result={result} candidateList={candidateList} />
+  }
+}
+
+const ResultComponent = ({ result, candidateList }) => {
   return (
     <div>
       <h2 className="fw-bold mb-3">Vote for your candidate</h2>
