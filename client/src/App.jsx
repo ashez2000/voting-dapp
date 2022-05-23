@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import AdminPage from './pages/Admin'
 import HomePage from './pages/Home'
 import LoginPage from './pages/Login'
+import OtpVerifyPage from './pages/OtpVerify'
 import PollingPage from './pages/PollingArea'
 import ResultPage from './pages/Result'
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/polling" element={<PollingPage />} />
           <Route path="/result" element={<ResultPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/otpverify" element={<OtpVerifyPage />} />
         </Routes>
       </div>
     </>

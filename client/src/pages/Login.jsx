@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import DatePicker from 'react-datepicker'
 
-import { useState, useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import 'react-datepicker/dist/react-datepicker.css'
+import { API_URL } from '../const'
 
-const LoginPage = ({ history }) => {
+const LoginPage = () => {
   const [email, setEmail] = useState('')
-  const [dob, setDob] = useState('')
+  const [startDate, setStartDate] = useState(new Date())
+  const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (email === '') {
       alert('Please enter all fields', 'danger')
     } else {
+      const dob = startDate.toLocaleDateString('en-CA')
+      try {
+        const res = await axios.post(`${API_URL}/auth/login`, { email, dob })
+        localStorage.setItem('otpToken', res.data.otpToken)
+        navigate('/otpverify')
+      } catch (err) {
+        console.error('Failed to Login')
+      }
     }
 
     setEmail('')
@@ -32,12 +44,12 @@ const LoginPage = ({ history }) => {
         <form onSubmit={handleSubmit}>
           {/* email */}
           <div className="mb-3">
-            <label className="form-label">User ID</label>
+            <label className="form-label">Email</label>
             <input
               type="text"
               className="form-control"
               name="name"
-              placeholder="User ID"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -45,7 +57,11 @@ const LoginPage = ({ history }) => {
           </div>
           <div className="mb-3">
             <label className="form-label">Date of birth</label>
-            <input className="form-control" type="date" />
+            <DatePicker
+              className="form-control"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+            />
           </div>
 
           <div className="d-grid">
