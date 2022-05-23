@@ -31,8 +31,8 @@ const AddCandidate = () => {
   }
 
   return (
-    <>
-      <h2 className="fs-3 text-center">Add Candidate</h2>
+    <div className="border p-3">
+      <h2 className="fs-3 text-center text-primary">Add Candidate</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <input
@@ -62,7 +62,7 @@ const AddCandidate = () => {
           />
         </div>
       </form>
-    </>
+    </div>
   )
 }
 

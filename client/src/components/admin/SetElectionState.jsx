@@ -34,10 +34,10 @@ const SetElectionState = () => {
 
   return (
     <div className="d-grid gap-3">
-      <button className="btn btn-lg btn-success" onClick={startElection}>
+      <button className="btn btn-success" onClick={startElection}>
         START Election
       </button>
-      <button className="btn btn-lg btn-danger" onClick={endElection}>
+      <button className="btn btn-danger" onClick={endElection}>
         END Election
       </button>
     </div>

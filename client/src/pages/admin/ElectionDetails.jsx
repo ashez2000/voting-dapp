@@ -7,7 +7,7 @@ import SetElectionDetails from '../../components/admin/SetElectionDetails'
 const ElectionDetailsPage = () => {
   return (
     <div className="row">
-      <div className="col-4">
+      <div className="col-4 border py-3">
         <SetElectionDetails />
         <hr />
         <SetElectionState />

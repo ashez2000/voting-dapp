@@ -49,7 +49,7 @@ const ElectionDetails = () => {
 
   return (
     <div>
-      <h2 className="fs-2 fw-bold">Details</h2>
+      <h2 className="fs-2 fw-bold text-primary">Election Details</h2>
       <div className="d-flex flex-column ">
         <div>
           <p className="fs-5">Title : {detail && detail[0]}</p>
