@@ -23,7 +23,7 @@ const NavCard = () => {
 const AdminNavbar = () => {
   return (
     <>
-      <section className="page-section portfolio" id="portfolio">
+      <section className="page-section portfolio d-none" id="portfolio">
         <div className="container">
           <div className="row justify-content-center">
             <NavCard />
@@ -32,14 +32,14 @@ const AdminNavbar = () => {
           </div>
         </div>
       </section>
-      <ul className="nav justify-content-center mb-3 d-none">
+      <ul className="nav justify-content-center mb-3">
         <li className="nav-item">
           <Link to="/admin" className="nav-link fw-bold fs-5">
             Details
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/admin/candidates" className="nav-link fw-bold fs-5">
+          <Link to="/admin/candidates" className="nav-link fw-bold fs-5 mx-5">
             Candidates
           </Link>
         </li>
