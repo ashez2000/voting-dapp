@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL } from '../const'
 
+import { AuthContext } from '../context/AuthContext'
+
 const OtpVerifyPage = () => {
   const [otp, setOtp] = useState('')
+  const { setUser } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -14,7 +19,8 @@ const OtpVerifyPage = () => {
         otpToken: localStorage.getItem('otpToken'),
       })
 
-      console.log(res.data)
+      setUser(res.data.user)
+      navigate('/')
     } catch (err) {
       console.log(err)
     }

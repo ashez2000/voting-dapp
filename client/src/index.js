@@ -7,12 +7,15 @@ import './index.css'
 import App from './App'
 
 import { ContractProvider } from './context/ContractContext'
+import { AuthProvider } from './context/AuthContext'
 
 ReactDOM.render(
   <BrowserRouter>
-    <ContractProvider>
-      <App />
-    </ContractProvider>
+    <AuthProvider>
+      <ContractProvider>
+        <App />
+      </ContractProvider>
+    </AuthProvider>
   </BrowserRouter>,
   document.getElementById('root')
 )
