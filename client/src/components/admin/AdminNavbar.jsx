@@ -1,37 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-const NavCard = () => {
-  return (
-    <div className="col-md-6 col-lg-4 mb-5">
-      <div
-        className="portfolio-item mx-auto"
-        data-bs-toggle="modal"
-        data-bs-target="#portfolioModal1"
-      >
-        <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-          <div className="portfolio-item-caption-content text-center text-white">
-            <span>Add</span>
-          </div>
-        </div>
-        <img className="img-fluid" src="/img/cabin.png" alt="..." />
-      </div>
-    </div>
-  )
-}
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
 
 const AdminNavbar = () => {
+  const { isAdmin, logoutAdmin } = useContext(AuthContext)
+  const navigate = useNavigate()
+
   return (
     <>
-      <section className="page-section portfolio d-none" id="portfolio">
-        <div className="container">
-          <div className="row justify-content-center">
-            <NavCard />
-            <NavCard />
-            <NavCard />
-          </div>
-        </div>
-      </section>
       <ul className="nav justify-content-center mb-3">
         <li className="nav-item">
           <Link to="/admin" className="nav-link fw-bold fs-5">
@@ -48,6 +24,19 @@ const AdminNavbar = () => {
             Voters
           </Link>
         </li>
+        {isAdmin && (
+          <li className="nav-item">
+            <span
+              className="nav-link "
+              onClick={() => {
+                logoutAdmin()
+                navigate('/')
+              }}
+            >
+              Logout
+            </span>
+          </li>
+        )}
       </ul>
     </>
   )

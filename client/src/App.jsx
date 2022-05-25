@@ -10,9 +10,10 @@ import LoginPage from './pages/Login'
 import OtpVerifyPage from './pages/OtpVerify'
 import PollingPage from './pages/PollingArea'
 import ResultPage from './pages/Result'
+import AdminLogin from './pages/admin/Login'
 
 const App = () => {
-  const { setUser, isAuthenticated } = useContext(AuthContext)
+  const { setUser, isAuthenticated, isAdmin } = useContext(AuthContext)
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
@@ -29,7 +30,8 @@ const App = () => {
             <Route path="/polling" element={<PollingPage />} />
           )}
           <Route path="/" element={<HomePage />} />
-          <Route path="/admin/*" element={<AdminPage />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          {isAdmin && <Route path="/admin/*" element={<AdminPage />} />}
           <Route path="/result" element={<ResultPage />} />
           {!isAuthenticated && <Route path="/login" element={<LoginPage />} />}
           <Route path="/otpverify" element={<OtpVerifyPage />} />
