@@ -5,9 +5,9 @@ import AdminNavbar from '../components/admin/AdminNavbar'
 import ElectionDetailsPage from './admin/ElectionDetails'
 import CandidatesPage from './admin/Candidates'
 import VotersPage from './admin/Voters'
-import AdminLogin from './admin/Login'
 
 import { AuthContext } from '../context/AuthContext'
+import GuidelinesPage from './admin/Guidelines'
 
 const AdminPage = () => {
   const { isAdmin } = useContext(AuthContext)
@@ -16,7 +16,8 @@ const AdminPage = () => {
     <>
       <AdminNavbar />
       <Routes>
-        {isAdmin && <Route index element={<ElectionDetailsPage />} />}
+        {isAdmin && <Route index element={<GuidelinesPage />} />}
+        {isAdmin && <Route path="/details" element={<ElectionDetailsPage />} />}
         {isAdmin && <Route path="/candidates" element={<CandidatesPage />} />}
         {isAdmin && <Route path="/voters" element={<VotersPage />} />}
       </Routes>

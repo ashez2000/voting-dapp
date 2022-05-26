@@ -11,11 +11,16 @@ const AdminNavbar = () => {
       <ul className="nav justify-content-center mb-3">
         <li className="nav-item">
           <Link to="/admin" className="nav-link fw-bold fs-5">
+            Guidelines
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/admin/details" className="nav-link fw-bold fs-5">
             Details
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/admin/candidates" className="nav-link fw-bold fs-5 mx-5">
+          <Link to="/admin/candidates" className="nav-link fw-bold fs-5">
             Candidates
           </Link>
         </li>
@@ -27,7 +32,7 @@ const AdminNavbar = () => {
         {isAdmin && (
           <li className="nav-item">
             <span
-              className="nav-link "
+              className="nav-link fw-bold fs-5"
               onClick={() => {
                 logoutAdmin()
                 navigate('/')
