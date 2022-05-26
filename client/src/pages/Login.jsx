@@ -34,8 +34,8 @@ const LoginPage = () => {
     <div className="row">
       <div className="col-6">
         <img
-          className="img-fluid"
-          src="/img/login.jpg"
+          className="img-fluid mt-5"
+          src="/img/login.svg"
           alt="login illustration"
         />
       </div>

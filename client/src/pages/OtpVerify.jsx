@@ -27,17 +27,27 @@ const OtpVerifyPage = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          className="form-control"
-          type="text"
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-        />
-
-        <input className="btn" type="submit" value="verify" />
-      </form>
+    <div className="row justify-content-center">
+      <div className="col-4">
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              className="form-control"
+              type="text"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              placeholder="Enter OTP"
+            />
+          </div>
+          <div className="d-grid">
+            <input
+              className="btn btn-success"
+              type="submit"
+              value="verify OTP"
+            />
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
