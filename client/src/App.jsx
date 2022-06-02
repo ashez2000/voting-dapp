@@ -11,6 +11,7 @@ import OtpVerifyPage from './pages/OtpVerify'
 import PollingPage from './pages/PollingArea'
 import ResultPage from './pages/Result'
 import AdminLogin from './pages/admin/Login'
+import Footer from './components/Footer'
 
 const App = () => {
   const { setUser, isAuthenticated, isAdmin } = useContext(AuthContext)
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/otpverify" element={<OtpVerifyPage />} />
         </Routes>
       </div>
+      <Footer />
     </>
   )
 }
