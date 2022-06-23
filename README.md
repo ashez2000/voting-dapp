@@ -1,1 +1,1 @@
-# voting-dapp-truffle-react
+# Online Voting System using blockchain
