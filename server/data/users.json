@@ -1,0 +1,38 @@
+[
+  {
+    "username": "Aswin Ganga",
+    "ethAccount": "0x0EE1a5369569E5f39E98Cd87D095935aFcde5bC7",
+    "email": "aswin@gmail.com",
+    "dob": "1999-05-14"
+  },
+  {
+    "username": "Kelsey Montgomery",
+    "ethAccount": "0xf9Dd08Da335cBe6481599690Bf6501b8ED6b83A3",
+    "email": "kelsey@gmail.com",
+    "dob": "1999-05-14"
+  },
+  {
+    "username": "Drogo Dittman",
+    "ethAccount": "0x31CB90f9c6bb9eD269148eBA21d7E722C967cE2E",
+    "email": "drogo@gmail.com",
+    "dob": "1999-05-14"
+  },
+  {
+    "username": "Rusty Dean",
+    "ethAccount": "0x999d1E0F411Df605EEA6E60e523e7DE4e78AbD14",
+    "email": "rusty@gmail.com",
+    "dob": "1999-05-14"
+  },
+  {
+    "username": "Alec Doyle",
+    "ethAccount": "0xA80E66fFD491bA3768c24A822df8cA84508DCE9F",
+    "email": "alec@gmail.com",
+    "dob": "1999-05-14"
+  },
+  {
+    "username": "Callie Fox",
+    "ethAccount": "0xeed47ca0Dcdf390c79298E061Fd70eb548e5de7A",
+    "email": "fox@gmail.com",
+    "dob": "1999-05-14"
+  }
+]
